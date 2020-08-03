@@ -6,6 +6,8 @@ js:
 	node distanceOfMatrix.js
 python:
 	python distanceOfMatrix.py
+numpy:
+	python distanceOfMatrix_numpy.py
 julia:
 	julia distanceOfMatrix.jl
 clean:

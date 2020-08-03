@@ -1,37 +1,32 @@
+import numpy as np
+
 def process(mod):
     print('\n'+str(mod))
 
     def multiply(a, b):
-        x1 = (a[0][0] + a[1][1]) * (b[0][0] + b[1][1])
-        x2 = (a[1][0] + a[1][1]) * b[0][0]
-        x3 = a[0][0] * (b[0][1] - b[1][1])
-        x4 = a[1][1] * (b[1][0] - b[0][0])
-        x5 = (a[0][0] + a[0][1]) * b[1][1]
-        x6 = (a[1][0] - a[0][0]) * (b[0][0] + b[0][1])
-        x7 = (a[0][1] - a[1][1]) * (b[1][0] + b[1][1])
-        c11 = x1 + x4 - x5 + x7
-        c12 = x3 + x5
-        c21 = x2 + x4
-        c22 = x1 + x3 - x2 + x6
-        return [[c11 % mod, c12 % mod], [c21 % mod, c22 % mod]]
+        return a.dot(b) % mod
 
     wlength = 0
+    
+    mt = np.array([[1, 1], [0, 1]],dtype='int32')
+    mts = np.array([[1, 0], [1, 1]],dtype='int32')
+    m = [mt, mts]
+
+    M_I=np.array([[1, 0], [0, 1]],dtype='int32')
+    M_minusI=np.array([[mod-1, 0], [0, mod-1]],dtype='int32')
     while 1:
         wlength+=1
         result = [False]
 
         x = [0]*wlength
         ce = [[]]*wlength
-        mt = [[1, 1], [0, 1]]
-        mts = [[1, 0], [1, 1]]
-        m = [mt, mts]
-        ce[-1] = [[1, 0], [0, 1]]
+        ce[-1] = np.array([[1, 0], [0, 1]],dtype='int32')
         
         def backtrack(t,result):
             if result[0]:return
             if t >= wlength :
                 e = ce[t - 1]
-                if (e[0][0] == 1 and e[0][1] == 0 and e[1][0] == 0 and e[1][1] == 1) or (e[0][0] == mod - 1 and e[0][1] == 0 and e[1][0] == 0 and e[1][1] == mod - 1) :
+                if (e==M_I).all() or (e==M_minusI).all() :
                     result[0] = True
             else:
                 for i in [0,1]:

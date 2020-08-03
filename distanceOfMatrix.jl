@@ -72,6 +72,7 @@ end
 
 if abspath(PROGRAM_FILE) == @__FILE__
     # process(20) # warm up
+    # @time process(400)
     for i in 400:404
         process(i)
     end
