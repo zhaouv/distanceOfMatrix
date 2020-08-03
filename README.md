@@ -23,5 +23,5 @@ node v10.15.3
 python 搞笑的 numpy也不适合这个场景 还是要靠c来拯救python
 Python 3.6.10 :: Anaconda, Inc.
 
-julia 60s左右
+julia 50s左右
 julia version 1.4.1

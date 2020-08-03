@@ -12,46 +12,49 @@ function multiply!(a::Array{Int,1}, b::Array{Int,1}, mod::Int, r::Array{Int,1})
     r[3] = (x2 + x4)%mod
     r[4] = (x1 + x3 - x2 + x6)%mod
 end
-
+# const m=[Int[1, 1, 0, 1], Int[1, 0, 1, 1]]
+const m1=Int[1, 1, 0, 1]
+const m2=Int[1, 0, 1, 1]
+function backtrack!(t::Int, mod::Int, wlength::Int,x::Array{Int,1},ce::Array{Array{Int,1},1},result::Array{Bool,1}) 
+    if result[1]
+        return 
+    end
+    if t >= wlength 
+        e = ce[t]
+        if ((e[1] == 1 && e[2] == 0 && e[3] == 0 && e[4] == 1) || (e[1] == mod - 1 && e[2] == 0 && e[3] == 0 && e[4] == mod - 1)) 
+            result[1] = true
+        end
+    else 
+        for i in [0,1]
+            x[t+1] = i;
+            # mi = m[i+1]
+            mi = i==0 ? m1 : m2
+            if t==0
+                ce[t+1] = mi
+            else
+                multiply!(mi, ce[t], mod, ce[t+1])
+            end
+            backtrack!(t + 1, mod, wlength,x ,ce,result);
+            if result[1]
+                return 
+            end
+        end
+    end
+end
 function process(mod::Int) 
     println(mod)
-    m=[[1, 1, 0, 1], [1, 0, 1, 1]]
+    
     wlength::Int = 0
     while true
         wlength+=1
         x = Int[0 for i in 1:wlength]
         ce = [Int[0 for j in 1:4] for i in 1:wlength]
-        result = false
-        function backtrack(t::Int, mod::Int, wlength::Int) 
-            if result
-                return 
-            end
-            if t >= wlength 
-                e = ce[t]
-                if ((e[1] == 1 && e[2] == 0 && e[3] == 0 && e[4] == 1) || (e[1] == mod - 1 && e[2] == 0 && e[3] == 0 && e[4] == mod - 1)) 
-                    result = true
-                end
-            else 
-                for i in [0,1]
-                    x[t+1] = i;
-                    mi = m[i+1]
-                    if t==0
-                        ce[t+1] = mi
-                    else
-                        multiply!(mi, ce[t], mod, ce[t+1])
-                    end
-                    backtrack(t + 1, mod, wlength);
-                    if result
-                        return 
-                    end
-                end
-            end
+        result = [false]
+        
+        t::Int=0
+        backtrack!(t, mod, wlength,x ,ce,result)
 
-        end
-
-        backtrack(0, mod, wlength)
-
-        if result
+        if result[1]
             if wlength < mod
                 println("length: ",wlength)
                 println(x)
@@ -64,18 +67,19 @@ function process(mod::Int)
                 println("]")
             end
         end
-        if result
+        if result[1]
             break
         end
     end
 end
 
 if abspath(PROGRAM_FILE) == @__FILE__
-    # @time run(`run.exe 400 401`)
-    # process(20) # warm up
-    # @time process(400)
-    for i in 400:404
-        process(i)
-    end
+    @time run(`run.exe 400 401`)
+    process(20) # warm up
+    @time process(400)
+    @time process(400)
+    # for i in 400:404
+    #     process(i)
+    # end
 end
 
