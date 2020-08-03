@@ -71,6 +71,7 @@ function process(mod::Int)
 end
 
 if abspath(PROGRAM_FILE) == @__FILE__
+    # @time run(`run.exe 400 401`)
     # process(20) # warm up
     # @time process(400)
     for i in 400:404
