@@ -6,5 +6,7 @@ js:
 	node distanceOfMatrix.js
 python:
 	python distanceOfMatrix.py
+julia:
+	julia distanceOfMatrix.jl
 clean:
 	@echo nothing to clean
