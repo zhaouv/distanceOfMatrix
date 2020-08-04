@@ -26,8 +26,7 @@ function backtrack!(t::Int, mod::Int, wlength::Int,x::Array{Int,1},ce::Array{Int
             result[1] = true
         end
     else 
-        i::Int=0
-        while i <= 1
+        for i in 0:1
             x[t+1] = i;
             # mi = m[i+1]
             mi = i==0 ? m1 : m2
@@ -44,7 +43,6 @@ function backtrack!(t::Int, mod::Int, wlength::Int,x::Array{Int,1},ce::Array{Int
                 # println("give up branch") # work, print $length times
                 return 
             end
-            i+=1
         end
     end
     return
@@ -83,7 +81,7 @@ function process(mod::Int)
 end
 
 # using Profile
-
+using BenchmarkTools
 if abspath(PROGRAM_FILE) == @__FILE__
     if size(ARGS,1) == 0
         for i in 400:404
@@ -93,14 +91,17 @@ if abspath(PROGRAM_FILE) == @__FILE__
         # --track-allocation=<setting>
         # none（默认值，不测量内存分配）、user（测量除 Julia core 代码之外的所有代码的内存分配）或 all（测量 Julia 代码中每一行的内存分配）
 
+        process(20) # warm up
         # @time run(`./run 400 401`)
         # @time run(`node distanceOfMatrix.js 400 401`)
-        process(20) # warm up
-        @time process(400)
+        # @time process(400)
         @time process(400)
         # @allocated process(400)
         # @profile process(400)
         # Profile.print(format=:flat)
+        # @btime process(400)
+        # @btime run(`./run 400 401`)
+        # @btime run(`node distanceOfMatrix.js 400 401`)
     elseif ARGS[1] == "time"
         t1 = @elapsed run(`./run 400 401`)
         t2 = @elapsed run(`node distanceOfMatrix.js 400 401`)

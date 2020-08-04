@@ -14,13 +14,13 @@ T * T * Ts ... = [1 0;0 1] 或 [n-1 0;0 n-1]
 
 在个人电脑上(只看400的时间)
 
-c 10s左右  
+c 10.089 s (57 allocations: 2.14 KiB) 
 gcc version 6.3.0 (MinGW.org GCC-6.3.0-1)
 
-julia 14s左右
+julia 14.002 s (968 allocations: 57.98 KiB)
 julia version 1.4.1
 
-js 30s左右
+js 31.275 s (62 allocations: 2.69 KiB)
 node v10.15.3
 
 python 搞笑的 numpy也不适合这个场景 还是要靠c来拯救python
