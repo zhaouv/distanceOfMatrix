@@ -1,4 +1,4 @@
-let process = function (mod) {
+let process_ = function (mod) {
     console.log('\n'+mod)
 
     let multiply = function (a, b,r) {
@@ -59,8 +59,18 @@ let process = function (mod) {
     }
 }
 
-Array.from({ length: 5 }).forEach((e, i) => {
-    let v = i + 400
-    process(v)
-});
+if (typeof require !== 'undefined' && require.main === module) {
 
+    if (process.argv.length>=4) {
+        let start=~~process.argv[2]
+        let end=~~process.argv[3]
+        Array.from({ length: end-start }).forEach((e, i) => {
+            let v = i + start
+            process_(v)
+        });
+    } else
+    Array.from({ length: 5 }).forEach((e, i) => {
+        let v = i + 400
+        process_(v)
+    });
+}

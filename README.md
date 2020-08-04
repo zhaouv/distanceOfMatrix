@@ -1,6 +1,6 @@
 # distance of matrix
 
-个人用来衡量语言硬跑递归能力的例子
+个人用来衡量语言硬跑回溯能力的例子
 
 背景是矩阵  
 T=[1 1;0 1]  
@@ -17,11 +17,11 @@ T * T * Ts ... = [1 0;0 1] 或 [n-1 0;0 n-1]
 c 10s左右  
 gcc version 6.3.0 (MinGW.org GCC-6.3.0-1)
 
+julia 14s左右
+julia version 1.4.1
+
 js 30s左右
 node v10.15.3
 
 python 搞笑的 numpy也不适合这个场景 还是要靠c来拯救python
 Python 3.6.10 :: Anaconda, Inc.
-
-julia 50s左右
-julia version 1.4.1
