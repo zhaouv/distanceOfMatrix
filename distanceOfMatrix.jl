@@ -91,22 +91,23 @@ if abspath(PROGRAM_FILE) == @__FILE__
         # --track-allocation=<setting>
         # none（默认值，不测量内存分配）、user（测量除 Julia core 代码之外的所有代码的内存分配）或 all（测量 Julia 代码中每一行的内存分配）
 
-        process(20) # warm up
-        @time run(`./run 400 401`)
-        @time run(`./run2 400 401`)
+        # process(20) # warm up
+        # @time run(`./run 400 401`)
+        # @time run(`./run2 400 401`)
         # @time run(`node distanceOfMatrix.js 400 401`)
         # @time process(400)
-        @time process(400)
+        # @time process(400)
         # @allocated process(400)
         # @profile process(400)
         # Profile.print(format=:flat)
         # @btime process(400)
         # @btime run(`./run 400 401`)
         # @btime run(`./run2 400 401`)
-        # @btime run(`node distanceOfMatrix.js 400 401`)
+        @btime run(`node distanceOfMatrix_1DArray.js 400 401`)
     elseif ARGS[1] == "time"
+        t2 = @elapsed run(`node distanceOfMatrix_1DArray.js 400 401`)
+        # t2 = @elapsed run(`node distanceOfMatrix.js 400 401`)
         t1 = @elapsed run(`./run 400 401`)
-        t2 = @elapsed run(`node distanceOfMatrix.js 400 401`)
         process(20) # warm up
         t3 = @elapsed process(400)
         println("c $t1 seconds")
