@@ -1,0 +1,1 @@
+cl.exe distanceOfMatrix.cc /O2 /Ferun2.exe

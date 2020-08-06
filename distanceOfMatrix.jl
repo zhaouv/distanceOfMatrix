@@ -92,7 +92,8 @@ if abspath(PROGRAM_FILE) == @__FILE__
         # none（默认值，不测量内存分配）、user（测量除 Julia core 代码之外的所有代码的内存分配）或 all（测量 Julia 代码中每一行的内存分配）
 
         process(20) # warm up
-        # @time run(`./run 400 401`)
+        @time run(`./run 400 401`)
+        @time run(`./run2 400 401`)
         # @time run(`node distanceOfMatrix.js 400 401`)
         # @time process(400)
         @time process(400)
@@ -101,6 +102,7 @@ if abspath(PROGRAM_FILE) == @__FILE__
         # Profile.print(format=:flat)
         # @btime process(400)
         # @btime run(`./run 400 401`)
+        # @btime run(`./run2 400 401`)
         # @btime run(`node distanceOfMatrix.js 400 401`)
     elseif ARGS[1] == "time"
         t1 = @elapsed run(`./run 400 401`)

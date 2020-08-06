@@ -10,6 +10,14 @@ Ts=[1 0;1 1]
 T * T * Ts ... = [1 0;0 1] 或 [n-1 0;0 n-1]  
 左侧每个矩阵都是T或Ts, 每次乘积后把四个数取mod到0~n-1
 
+# usage
+
+msvc 需要修改 loadenv.cmd, 改为相应环境的vcvars批处理
+```shell
+make
+make time
+```
+
 # 大概耗时
 
 在个人电脑上(只看400的时间)

@@ -1,5 +1,7 @@
 all:
 	g++ -Wall  distanceOfMatrix.cc -O3 -o run
+	loadenv.cmd
+	compile.cmd
 c:
 	./run 400 405
 js:
