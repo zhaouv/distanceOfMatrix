@@ -1,7 +1,7 @@
 all:
 	g++ -Wall  distanceOfMatrix.cc -O3 -o run
 	loadenv.cmd
-	compile.cmd
+	cl.exe distanceOfMatrix.cc /O2 /Ferun2.exe
 c:
 	./run 400 405
 js:
@@ -17,4 +17,4 @@ test:
 time:
 	julia distanceOfMatrix.jl time
 clean:
-	@echo nothing to clean
+	del *.obj
