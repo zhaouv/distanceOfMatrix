@@ -5,11 +5,9 @@ all:
 c:
 	./run 400 405
 js:
-	node distanceOfMatrix.js
+	node distanceOfMatrix_1DArray.js
 python:
 	python distanceOfMatrix.py
-numpy:
-	python distanceOfMatrix_numpy.py
 julia:
 	julia distanceOfMatrix.jl
 test:
