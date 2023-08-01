@@ -104,3 +104,6 @@ Process(`./c 400 401`, ProcessExited(0))
 clang++  -Wall  c.cc -O3 -o cl
   11.647 s (44 allocations: 1.86 KiB)
 Process(`./cl 400 401`, ProcessExited(0))
+
+  9.973 s (44 allocations: 1.86 KiB)
+Process(`./f 400 401`, ProcessExited(0))
