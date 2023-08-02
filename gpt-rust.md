@@ -107,3 +107,7 @@ Process(`./cl 400 401`, ProcessExited(0))
 
   9.973 s (44 allocations: 1.86 KiB)
 Process(`./f 400 401`, ProcessExited(0))
+
+静态cpp
+  11.382 s (44 allocations: 1.86 KiB)
+Process(`./c 400 401`, ProcessExited(0))
