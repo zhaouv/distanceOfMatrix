@@ -16,3 +16,7 @@ time:
 	julia distanceOfMatrix.jl time
 clean:
 	del *.obj
+rust:
+	rustc -C opt-level=3 -C target-cpu=native -C lto -C codegen-units=1 distanceOfMatrix_f.rs
+csharp:
+	sudo docker run --rm -it -v `pwd`:/w mono:6.12.0.182 bash -c 'cd /w&&csc -out:cs1.exe distanceOfMatrix_f.cs'

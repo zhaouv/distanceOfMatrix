@@ -40,4 +40,5 @@ Python 3.6.10 :: Anaconda, Inc.
 
 新增  
 rust 略快于c++  
-godot 显著满于python  
+godot 显著慢于python  
+csharp 比c++慢10倍大概  
