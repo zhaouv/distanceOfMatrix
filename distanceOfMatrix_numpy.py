@@ -42,7 +42,7 @@ def process(mod):
                 print(ce)
             break
 
-for i in range(400,405):
+for i in range(80,81):
     process(i)
 
 
