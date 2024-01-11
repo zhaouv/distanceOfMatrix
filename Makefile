@@ -26,3 +26,6 @@ wasm:
 	rustc -C opt-level=3 -C target-cpu=native -C lto -C codegen-units=1 distanceOfMatrix_f.rs --target wasm32-wasi
 	time wasmedge distanceOfMatrix_f.wasm 80 81
 	time wasmtime distanceOfMatrix_f.wasm 400 401
+wasm_py:
+	rustc -C opt-level=3 -C target-cpu=native -C lto -C codegen-units=1 distanceOfMatrix_f_export.rs --target wasm32-wasi
+	python3 distanceOfMatrix_f_export_call.py
