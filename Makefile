@@ -17,7 +17,7 @@ time:
 clean:
 	del *.obj
 rust:
-	rustc -C opt-level=3 -C target-cpu=native -C lto -C codegen-units=1 distanceOfMatrix_f.rs
+	rustc -C opt-level=3 -C target-cpu=native -C lto -C codegen-units=1 distanceOfMatrix_f.rs -o run
 csharp:
 	sudo docker run --rm -it -v `pwd`:/w mono:6.12.0.182 bash -c 'cd /w&&csc -out:cs1.exe distanceOfMatrix_f.cs'
 bun:
@@ -26,6 +26,10 @@ wasm:
 	rustc -C opt-level=3 -C target-cpu=native -C lto -C codegen-units=1 distanceOfMatrix_f.rs --target wasm32-wasi
 	time wasmedge distanceOfMatrix_f.wasm 80 81
 	time wasmtime distanceOfMatrix_f.wasm 400 401
+	time wasmer distanceOfMatrix_f.wasm 400 401
+	rustc -C opt-level=3 -C target-cpu=native -C lto -C codegen-units=1 distanceOfMatrix_f_export_test.rs --target wasm32-wasi
+	rustc -C opt-level=3 -C target-cpu=native -C lto -C codegen-units=1 distanceOfMatrix_f_export_test.rs --target wasm32-unknown-unknown
+	time wasmtime distanceOfMatrix_f_export_test.wasm 400 401
 wasm_py:
 	rustc -C opt-level=3 -C target-cpu=native -C lto -C codegen-units=1 distanceOfMatrix_f_export.rs --target wasm32-wasi
 	python3 distanceOfMatrix_f_export_call.py

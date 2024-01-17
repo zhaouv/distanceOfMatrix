@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    wasmer run . 400 401
+
+    <script defer type="module">
+
+        async function run() {
+            // await init();
+            // const wasmUrl="./distanceOfMatrix_f.wasm?url";
+            // const wasmUrl="./distanceOfMatrix_f_export.wasm?url";
+            const wasmUrl="./distanceOfMatrix_f_export_test.wasm?url";
+            const module = await WebAssembly.compileStreaming(fetch(wasmUrl));
+            // const packageName = "download/wasmer.toml";
+            // const pkg = await Wasmer.fromRegistry(packageName);
+            
+            console.log(module)
+
+            let importObject = {
+                "wasi_snapshot_preview1":{
+                    "fd_write":(a,b,c,d,e,f)=>{console.log("fd_write",a,b,c,d,e,f)},
+                    "args_sizes_get":(a,b,c,d,e,f)=>{console.log("args_sizes_get",a,b,c,d,e,f)},
+                    "args_get":(a,b,c,d,e,f)=>{console.log("args_get",a,b,c,d,e,f)},
+                    "environ_get":(a,b,c,d,e,f)=>{console.log("environ_get",a,b,c,d,e,f)},
+                    "environ_sizes_get":(a,b,c,d,e,f)=>{console.log("environ_sizes_get",a,b,c,d,e,f)},
+                    "proc_exit":(a,b,c,d,e,f)=>{console.log("proc_exit",a,b,c,d,e,f)},
+                }
+            };
+
+
+            // 实例化模块
+            console.log(new Date().getTime())
+            const instance = await WebAssembly.instantiate(module, importObject);
+            console.log(new Date().getTime())
+            console.log(instance.exports.process(80));
+            console.log(new Date().getTime())
+            console.log(instance.exports.process(400));
+            console.log(new Date().getTime())
+            // 1705469157620-1705469145693 = 11927ms
+
+            // const instancePromise = WebAssembly.instantiate(module, importObject);
+
+            // // 等待实例化完成
+            // instancePromise.then(instance => {
+            //     instance.exports.process(80);
+
+            // }).catch(error => {
+            //     console.error('实例化WebAssembly模块时出错:', error);
+            // });
+        }
+    
+        run();
+    </script>
+</body>
+</html>
