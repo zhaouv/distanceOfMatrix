@@ -44,3 +44,4 @@ godot 显著慢于python
 csharp 比c++慢10倍大概  
 wasm 在使用wasmtime下只略慢rust一点点  
 wasm 扔浏览器大概是原始rs的3倍耗时 (emcc的wasm在node也是比c略慢, 扔浏览器后慢很多)
+zig 略快于rust  

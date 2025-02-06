@@ -101,9 +101,9 @@ if abspath(PROGRAM_FILE) == @__FILE__
         # @profile process(400)
         # Profile.print(format=:flat)
         # @btime process(400)
-        # @btime run(`./run 400 401`)
+        @btime run(`./run 400 401`)
         # @btime run(`./run2 400 401`)
-        @btime run(`node distanceOfMatrix_1DArray.js 400 401`)
+        # @btime run(`node distanceOfMatrix_1DArray.js 400 401`)
     elseif ARGS[1] == "time"
         t2 = @elapsed run(`node distanceOfMatrix_1DArray.js 400 401`)
         # t2 = @elapsed run(`node distanceOfMatrix.js 400 401`)

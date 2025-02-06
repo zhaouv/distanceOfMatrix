@@ -33,3 +33,5 @@ wasm:
 wasm_py:
 	rustc -C opt-level=3 -C target-cpu=native -C lto -C codegen-units=1 distanceOfMatrix_f_export.rs --target wasm32-wasi
 	python3 distanceOfMatrix_f_export_call.py
+zig:
+	zig build-exe distanceOfMatrix_fixed_size.zig -O ReleaseFast -femit-bin=run

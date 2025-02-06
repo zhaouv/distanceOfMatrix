@@ -4,5 +4,5 @@
 # time python3 distanceOfMatrix_f_export_call.py
 
 import wasmtime.loader
-import distanceOfMatrix_f_export
-distanceOfMatrix_f_export.process(400) # somehow no print
+import distanceOfMatrix_f_export_test
+print(distanceOfMatrix_f_export_test.process(400)) # somehow no print
